@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/Entypo';
 import { connect } from 'react-redux';
 import { GetProducts } from '../redux/actions/getProductsActions';
 import { ADD_CART, REMOVE_CART } from '../redux/actions/cartActions';
+import useOreintation from '../utils/responsiveUtils';
 import { color } from 'react-native-reanimated';
 
 
@@ -110,8 +111,11 @@ const Home = (props) => {
 
     }, []);
 
+
+
+
     return (
-        <View style={styles.container}>
+        <View style={[styles.container]}>
             <View style={styles.headerView}>
                 <Text style={styles.txtHeader}>Products</Text>
                 <TouchableOpacity

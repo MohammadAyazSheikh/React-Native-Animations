@@ -9,6 +9,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import Home from './src/screens/HomeScreen';
 import Cart from './src/screens/cartScreen';
+import Test from './src/screens/testScreen';
 import { configureStore } from './src/redux/configureStore';
 import { Provider } from 'react-redux';
 
@@ -42,7 +43,7 @@ export default function App() {
           }}
 
         >
-          <Drawer.Screen name="Home" component={Home}
+          <Drawer.Screen name="Home" component={Test}
             options={{
               headerShown: false,
 
