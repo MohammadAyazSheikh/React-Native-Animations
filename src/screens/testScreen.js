@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Entypo';
 import { connect } from 'react-redux';
 import { GetProducts } from '../redux/actions/getProductsActions';
 import { ADD_CART, REMOVE_CART } from '../redux/actions/cartActions';
-import useOreintation from '../utils/responsiveUtils';
+import { useFunctionalOrientaion, orientaionListener, useClassOrientaion } from '../utils/responsiveUtils';
 import { color } from 'react-native-reanimated';
 const screen = Dimensions.get('screen');
 
@@ -21,31 +21,53 @@ let h = Dimensions.get('screen').height;
 const Test = (props) => {
 
 
-    const Oreintation = useOreintation(w,h);
-  
-
-    useEffect(() => {
+    const Oreintation = useFunctionalOrientaion(responsiveStyles);
 
 
-
-    }, []);
-
-    const pStyle = {
-        width: Oreintation.width / 100 * 50,
-        height: Oreintation.width / 100 * 70,
-        backgroundColor: 'red',
-    };
-    const lStyle = {}
 
 
     return (
         <View style={[styles.container]}>
-            <View style={Oreintation.isPortrait ? styles.ptStyle : styles.lpSTyye}>
+            <View style={Oreintation.isPortrait ? Oreintation.styles.ptStyle : Oreintation.styles.lpSTyye}>
 
             </View>
         </View>
     );
 }
+
+// class Test extends Component {
+
+//     constructor(props) {
+//         super(props);
+
+//         this.state = {
+//             screenInfo: Dimensions.get('screen')
+//         }
+
+
+//         this.Oreintation = orientaionListener(this);
+//     }
+
+//     componentDidMount() {
+//         this.Oreintation.addOrientationListener();
+//     }
+//     componentWillUnmount() {
+//         this.Oreintation.removeOrientationListener();
+//     }
+//     render() {
+
+//         const styles2 = useClassOrientaion(this, responsiveStyles);
+
+//         return (
+//             <View style={[styles.container]}>
+//                 <View style={styles2.isPortrait ? styles2.styles.ptStyle : styles2.styles.lpSTyye}>
+
+//                 </View>
+//             </View>
+//         );
+//     }
+
+// }
 
 
 
@@ -64,22 +86,23 @@ const styles = StyleSheet.create({
         backgroundColor: 'red',
     },
 
-    lpSTyye: {
-        width: w / 100 * 50,
-        height: w / 100 * 70,
-        backgroundColor: 'red',
-    },
-    ptStyle: {
-        width: w / 100 * 50,
-        height: w / 100 * 70,
-        backgroundColor: 'green',
-    },
-
-
-
-
-
-
 });
+
+function responsiveStyles(screenInfo, w, h) {
+
+    console.log(JSON.stringify(screenInfo))
+    return StyleSheet.create({
+        lpSTyye: {
+            width: w(50),
+            height: h(70),
+            backgroundColor: 'red',
+        },
+        ptStyle: {
+            width: w(50),
+            height: h(70),
+            backgroundColor: 'green',
+        },
+    });
+}
 
 
