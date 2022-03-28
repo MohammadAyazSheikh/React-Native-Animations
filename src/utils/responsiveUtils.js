@@ -41,6 +41,8 @@ export const useFunctionalOrientaion = (callBack) => {
     return {
         ...screenInfo,
         isPortrait: screenInfo.height > screenInfo.width,
+        widthToDp: widthToDp,
+        heightToDp: heightToDp,
         styles: callBack(screenInfo, widthToDp, heightToDp)
     };
 
@@ -80,7 +82,7 @@ export const orientaionListener = (self) => {
 
 export const useClassOrientaion = (self, callBack) => {
 
-    
+
     const widthToDp = (number) => {
 
         let givenWidth = typeof number === 'number' ? number : parseFloat(number);
